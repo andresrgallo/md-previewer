@@ -1,6 +1,172 @@
+$border: 1px solid black;
+$shadow: 1px 1px 10px 2px;
+$customBackground: rgb(196, 236, 196);
+$previewerWidth: 800px;
+$customMargin: 30px auto 0 auto;
+$darkAccent: #224b4b;
+$boxColor: rgb(206, 239, 245);
+
+@mixin flex {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+@mixin toolBar {
+	@include flex;
+	flex-direction: row;
+	background: $customBackground;
+	justify-content: space-between;
+	line-height: 40px;
+	padding: 0 20px;
+	border-bottom: 1px solid black;
+	#bar-title {
+		font-weight: bold;
+		font-size: 1.2em;
+	}
+	#opener {
+		&:hover {
+			cursor: pointer;
+		}
+	}
+}
+
+* {
+	box-sizing: border-box;
+}
+
 body {
+	background: rgb(205, 230, 236);
 	div#root {
-		background-color: #222;
-		color: #8ee4af;
+		color: #373a38;
+	}
+	.editor {
+		border: $border;
+		box-shadow: $shadow;
+		width: $previewerWidth - 200px;
+		margin: 18px auto;
+		.toolbar {
+			@include toolBar;
+		}
+		textarea {
+			background: $boxColor;
+			width: 100%;
+			min-height: 200px;
+			margin-bottom: -5px;
+			border: none;
+			resize: vertical;
+			outline: none;
+			padding-left: 5px;
+			padding-top: 5px;
+			font-size: 12px;
+		}
+	}
+	.hide {
+		display: none;
+	}
+	.converter {
+		width: 100px;
+		text-align: center;
+		font-size: 35px;
+		margin: auto;
+	}
+
+	.preview-section {
+		margin: $customMargin;
+		border: $border;
+		box-shadow: $shadow;
+		background: $boxColor;
+		width: $previewerWidth;
+		text-align: center;
+		min-height: 300px;
+		overflow-wrap: break-word;
+		.toolbar {
+			@include toolBar;
+		}
+		#preview {
+			padding-left: 5px;
+			padding-right: 5px;
+			margin-top: -10px;
+			width: 100%;
+		}
+	}
+	.maximized {
+		width: 96%;
+		min-height: 100vh;
+		margin: auto;
+		textarea {
+			min-height: 95vh;
+			resize: none;
+		}
+	}
+
+	@media screen and (max-width: 900px) {
+		.preview-section {
+			width: 630px;
+		}
+		.editor {
+			width: 550px;
+		}
+	}
+	@media screen and (max-width: 660px) {
+		.preview-section {
+			width: 460px;
+		}
+		.editor {
+			width: 440px;
+		}
+	}
+	@media screen and (max-width: 500px) {
+		.preview-section {
+			width: 370px;
+		}
+		.editor {
+			width: 370px;
+		}
+		img {
+			width: 360px;
+		}
+	}
+
+	// MARKDOWN STYLES
+	#preview {
+		blockquote {
+			border-left: 3px solid #224b4b;
+			color: #224b4b;
+			padding-left: 5px;
+			margin-left: 25px;
+		}
+
+		code {
+			background: white;
+			padding: 1px 4px 2px 4px;
+			font-size: 12px;
+			font-weight: bold;
+		}
+
+		pre {
+			background: white;
+			padding: 5px 0 5px 5px;
+		}
+
+		h1 {
+			border-bottom: 2px solid $darkAccent;
+		}
+
+		h2 {
+			border-bottom: 1px solid $darkAccent;
+		}
+
+		table {
+			border-collapse: collapse;
+			margin: 20px 0;
+		}
+
+		td,
+		th {
+			border: 2px solid $darkAccent;
+			padding-left: 5px;
+			padding-right: 5px;
+		}
 	}
 }
