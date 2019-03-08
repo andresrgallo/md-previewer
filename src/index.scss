@@ -36,6 +36,10 @@ $boxColor: rgb(206, 239, 245);
 }
 
 body {
+	#header {
+		text-align: center;
+		padding: 20px;
+	}
 	background: rgb(205, 230, 236);
 	div#root {
 		color: #373a38;

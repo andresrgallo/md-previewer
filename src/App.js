@@ -45,6 +45,7 @@ class App extends Component {
 			: ['editor', 'preview-section', 'fas fa-expand-arrows-alt'];
 		return (
 			<main>
+				<h1 id="header">Markdown Previewer</h1>
 				<div className={classList[0]}>
 					<Bar
 						openerClick={this.editorOpenerClick}
